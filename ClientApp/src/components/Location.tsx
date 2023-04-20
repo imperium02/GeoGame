@@ -35,9 +35,9 @@ const LocationCard: React.FC = () => {
       <Grid container spacing={1} height="100vh" justifyContent="space-between">
         <Grid item>
           <Typography
-            variant="h4"
+            // variant="h4"
             align="left"
-            sx={{ lineHeight: 1.6, letterSpacing: 2 }}
+            sx={{ lineHeight: 1.6, letterSpacing: 2, fontSize: "28px" }}
           >
             Pierwsza lokalizacja to miejsce w którym pracuje. Jest to miejsce w
             którym wykonuje ciężką pracę taką jak konfiguracja nowego kiosku.
@@ -66,13 +66,13 @@ const LocationCard: React.FC = () => {
             <Grid item flexBasis={0} flexGrow={1} flexShrink={1}>
               <Hint
                 hint="Ten budynek jest cały czarny oraz jest pokryty prawie w całości z okien."
-                name="Tekstowa 1"
+                name="Mała"
               />
             </Grid>
             <Grid item flexBasis={0} flexGrow={1} flexShrink={1}>
               <Hint
                 hint="Ten budynek jest cały czarny oraz jest pokryty prawie w całości z okien."
-                name="Tekstowa 2"
+                name="Duża"
               />
             </Grid>
             <Grid item flexBasis={0} flexGrow={1} flexShrink={1}>
