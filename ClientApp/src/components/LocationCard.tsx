@@ -47,7 +47,7 @@ const LocationCard: React.FC = () => {
             variant="h6"
             align="left"
             alignSelf="flex-start"
-            color="blanchedalmond"
+            color="#C6B26F"
           >
             Dotrzyj we wskazane miejsce aby konynuować.
           </Typography>

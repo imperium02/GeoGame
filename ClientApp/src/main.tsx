@@ -7,6 +7,7 @@ import "./index.css";
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
+    primary: { main: "#C6B26F" },
   },
 });
 
