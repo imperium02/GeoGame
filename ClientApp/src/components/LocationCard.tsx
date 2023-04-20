@@ -40,7 +40,7 @@ const LocationCard: React.FC = () => {
         (err) => {
           alert(err);
         },
-        { enableHighAccuracy: true, timeout: 3000 }
+        { enableHighAccuracy: true, timeout: 3000, maximumAge: 0 }
       );
     }, 5000);
 
