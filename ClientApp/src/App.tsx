@@ -2,10 +2,11 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import React from "react";
 import viteLogo from "/vite.svg";
-import "./App.css";
-import { Grid } from "@mui/material";
+import { createTheme, Grid, TextField } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+import "./App.css";
 
 type GpsPosition = {
   latitude: number;
@@ -13,7 +14,8 @@ type GpsPosition = {
 };
 
 const App: React.FC = () => {
-  const [count, setCount] = useState(0);
+  const [code, setCode] = useState("");
+  const [codeCorrect, setCodeCorrect] = useState(false);
 
   const [position, setPosition] = React.useState<GpsPosition>();
 
@@ -35,22 +37,53 @@ const App: React.FC = () => {
     console.log("updated");
   };
 
+  const validateCode = () => {
+    if ("test-code") setCodeCorrect(true);
+  };
+
   return (
     <div className="App">
       <Grid container flexDirection="column" spacing={5}>
-        <Grid item>
-          <Typography>Cytadela</Typography>
-        </Grid>
-        <Grid item>
-          <Button variant="contained" onClick={updateGpsPosition}>
-            Update position
-          </Button>
+        {!codeCorrect ? (
+          <>
+            <Grid item>
+              <Typography component="h1">Hej!</Typography>
+            </Grid>
+            <Grid item>
+              <Typography component="h4">
+                Wpisz otrzymany kod poniżej:
+              </Typography>
+            </Grid>
+            <Grid item>
+              <TextField
+                variant="filled"
+                label="Twój kod"
+                onChange={(event) => setCode(event.target.value)}
+              />
+            </Grid>
+            <Grid item>
+              <Button
+                variant="contained"
+                endIcon={<PlayCircleOutlineIcon />}
+                size="large"
+                onClick={validateCode}
+              >
+                Rozpocznij
+              </Button>
+            </Grid>
+          </>
+        ) : (
+          <Grid item>
+            <Button variant="contained" onClick={updateGpsPosition}>
+              Update position
+            </Button>
 
-          <div>
-            <p>Latitude: {position?.latitude}</p>
-            <p>Longitude: {position?.longitude}</p>
-          </div>
-        </Grid>
+            <div>
+              <p>Latitude: {position?.latitude}</p>
+              <p>Longitude: {position?.longitude}</p>
+            </div>
+          </Grid>
+        )}
       </Grid>
     </div>
   );
