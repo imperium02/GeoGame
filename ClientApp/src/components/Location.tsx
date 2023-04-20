@@ -43,14 +43,9 @@ const LocationCard: React.FC = () => {
             którym wykonuje ciężką pracę taką jak konfiguracja nowego kiosku.
           </Typography>
         </Grid>
-        <Grid item>
-          <Typography
-            variant="h6"
-            align="left"
-            alignSelf="flex-start"
-            color="#C6B26F"
-          >
-            Dotrzyj we wskazane miejsce aby konynuować.
+        <Grid item alignSelf="flex-start">
+          <Typography variant="h6" align="left" color="#C6B26F">
+            Dotknij aby sprawdzić czy jesteś na miejscu.
           </Typography>
         </Grid>
         <Grid item>
