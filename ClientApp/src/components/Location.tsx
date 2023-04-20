@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
+import Hint from "./Hint";
 
 type GpsPosition = {
   latitude: number;
@@ -10,24 +11,24 @@ type GpsPosition = {
 const LocationCard: React.FC = () => {
   const [position, setPosition] = React.useState<GpsPosition>();
 
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      navigator.geolocation.getCurrentPosition(
-        (p) => {
-          setPosition({
-            latitude: p.coords.latitude,
-            longitude: p.coords.longitude,
-          });
-        },
-        (err) => {
-          alert(err);
-        },
-        { enableHighAccuracy: true, timeout: 3000, maximumAge: 0 }
-      );
-    }, 5000);
+  //   React.useEffect(() => {
+  //     const interval = setInterval(() => {
+  //       navigator.geolocation.getCurrentPosition(
+  //         (p) => {
+  //           setPosition({
+  //             latitude: p.coords.latitude,
+  //             longitude: p.coords.longitude,
+  //           });
+  //         },
+  //         (err) => {
+  //           alert(err);
+  //         },
+  //         { enableHighAccuracy: true, timeout: 3000, maximumAge: 0 }
+  //       );
+  //     }, 5000);
 
-    return () => clearInterval(interval);
-  });
+  //     return () => clearInterval(interval);
+  //   });
 
   return (
     <>
@@ -63,24 +64,28 @@ const LocationCard: React.FC = () => {
           </Typography>
           <Grid container spacing={3} flexDirection="row">
             <Grid item flexBasis={0} flexGrow={1} flexShrink={1}>
-              <Button variant="contained" fullWidth size="large">
-                Tekstowa 1
-              </Button>
+              <Hint
+                hint="Ten budynek jest cały czarny oraz jest pokryty prawie w całości z okien."
+                name="Tekstowa 1"
+              />
             </Grid>
             <Grid item flexBasis={0} flexGrow={1} flexShrink={1}>
-              <Button variant="contained" fullWidth size="large">
-                Tekstowa 2
-              </Button>
+              <Hint
+                hint="Ten budynek jest cały czarny oraz jest pokryty prawie w całości z okien."
+                name="Tekstowa 2"
+              />
             </Grid>
             <Grid item flexBasis={0} flexGrow={1} flexShrink={1}>
-              <Button variant="contained" fullWidth size="large">
-                Kierunek
-              </Button>
+              <Hint
+                hint="Ten budynek jest cały czarny oraz jest pokryty prawie w całości z okien."
+                name="Kierunek"
+              />
             </Grid>
             <Grid item flexBasis={0} flexGrow={1} flexShrink={1}>
-              <Button variant="contained" fullWidth size="large">
-                Odległość
-              </Button>
+              <Hint
+                hint="Ten budynek jest cały czarny oraz jest pokryty prawie w całości z okien."
+                name="Odległość"
+              />
             </Grid>
           </Grid>
         </Grid>

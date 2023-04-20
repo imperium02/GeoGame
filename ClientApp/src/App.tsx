@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import "./App.css";
-import LocationCard from "./components/LocationCard";
+import LocationCard from "./components/Location";
 
 type GpsPosition = {
   latitude: number;
