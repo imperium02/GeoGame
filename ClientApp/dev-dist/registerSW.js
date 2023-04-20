@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) navigator.serviceWorker.register('/GeoGame/dev-sw.js?dev-sw', { scope: '/GeoGame/', type: 'classic' })
