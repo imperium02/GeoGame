@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import "./App.css";
+import LocationCard from "./components/LocationCard";
 
 type GpsPosition = {
   latitude: number;
@@ -69,16 +70,7 @@ const App: React.FC = () => {
             </Grid>
           </>
         ) : (
-          <Grid item>
-            <Button variant="contained" onClick={updateGpsPosition}>
-              Update position
-            </Button>
-
-            <div>
-              <p>Latitude: {position?.latitude}</p>
-              <p>Longitude: {position?.longitude}</p>
-            </div>
-          </Grid>
+          <LocationCard />
         )}
       </Grid>
     </div>
