@@ -1,8 +1,6 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
 import React from "react";
-import viteLogo from "/vite.svg";
-import { createTheme, Grid, TextField } from "@mui/material";
+import { Grid, TextField } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
@@ -47,12 +45,10 @@ const App: React.FC = () => {
         {!codeCorrect ? (
           <>
             <Grid item>
-              <Typography component="h1">Hej!</Typography>
+              <Typography variant="h3">Hej!</Typography>
             </Grid>
             <Grid item>
-              <Typography component="h4">
-                Wpisz otrzymany kod poniżej:
-              </Typography>
+              <Typography variant="h6">Wpisz otrzymany kod poniżej:</Typography>
             </Grid>
             <Grid item>
               <TextField
