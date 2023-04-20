@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 
 type GpsPosition = {
@@ -9,24 +9,6 @@ type GpsPosition = {
 
 const LocationCard: React.FC = () => {
   const [position, setPosition] = React.useState<GpsPosition>();
-
-  const updateGpsPosition = () => {
-    console.log("updating");
-    navigator.geolocation.getCurrentPosition(
-      (p) => {
-        console.log("updating2");
-        setPosition({
-          latitude: p.coords.latitude,
-          longitude: p.coords.longitude,
-        });
-      },
-      (err) => {
-        alert(err);
-      },
-      { enableHighAccuracy: true, timeout: 10000 }
-    );
-    console.log("updated");
-  };
 
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -48,16 +30,62 @@ const LocationCard: React.FC = () => {
   });
 
   return (
-    <Grid item>
-      <Button variant="contained" onClick={updateGpsPosition}>
-        Update position
-      </Button>
-
-      <div>
-        <p>Latitude: {position?.latitude}</p>
-        <p>Longitude: {position?.longitude}</p>
-      </div>
-    </Grid>
+    <>
+      <Grid container spacing={1} height="100vh" justifyContent="space-between">
+        <Grid item>
+          <Typography
+            variant="h4"
+            align="left"
+            sx={{ lineHeight: 1.6, letterSpacing: 2 }}
+          >
+            Pierwsza lokalizacja to miejsce w którym pracuje. Jest to miejsce w
+            którym wykonuje ciężką pracę taką jak konfiguracja nowego kiosku.
+          </Typography>
+        </Grid>
+        <Grid item>
+          <Typography
+            variant="h6"
+            align="left"
+            alignSelf="flex-start"
+            color="blanchedalmond"
+          >
+            Dotrzyj we wskazane miejsce aby konynuować.
+          </Typography>
+        </Grid>
+        <Grid item>
+          <Typography
+            variant="h6"
+            align="left"
+            alignSelf="flex-start"
+            marginBottom={3}
+          >
+            Podpowiedzi:
+          </Typography>
+          <Grid container spacing={3} flexDirection="row">
+            <Grid item flexBasis={0} flexGrow={1} flexShrink={1}>
+              <Button variant="contained" fullWidth size="large">
+                Tekstowa 1
+              </Button>
+            </Grid>
+            <Grid item flexBasis={0} flexGrow={1} flexShrink={1}>
+              <Button variant="contained" fullWidth size="large">
+                Tekstowa 2
+              </Button>
+            </Grid>
+            <Grid item flexBasis={0} flexGrow={1} flexShrink={1}>
+              <Button variant="contained" fullWidth size="large">
+                Kierunek
+              </Button>
+            </Grid>
+            <Grid item flexBasis={0} flexGrow={1} flexShrink={1}>
+              <Button variant="contained" fullWidth size="large">
+                Odległość
+              </Button>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    </>
   );
 };
 

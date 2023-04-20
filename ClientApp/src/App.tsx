@@ -42,9 +42,9 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <Grid container flexDirection="column" spacing={5}>
-        {!codeCorrect ? (
-          <>
+      {!codeCorrect ? (
+        <>
+          <Grid container flexDirection="column" spacing={5}>
             <Grid item>
               <Typography variant="h3">Hej!</Typography>
             </Grid>
@@ -68,11 +68,11 @@ const App: React.FC = () => {
                 Rozpocznij
               </Button>
             </Grid>
-          </>
-        ) : (
-          <LocationCard />
-        )}
-      </Grid>
+          </Grid>
+        </>
+      ) : (
+        <LocationCard />
+      )}
     </div>
   );
 };
