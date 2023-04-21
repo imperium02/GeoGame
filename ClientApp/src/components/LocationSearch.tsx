@@ -43,6 +43,12 @@ const LocationSearch: React.FC<LocationSearchProps> = ({ onArrived }) => {
           Math.abs(position.longitude - 16.910857) < 0.0001
         ) {
           onArrived();
+        } else {
+          alert(
+            `Lat: ${Math.abs(position.latitude - 52.431939)}, Long: ${Math.abs(
+              position.longitude - 16.910857
+            )}`
+          );
         }
       },
       (err) => {
@@ -145,7 +151,7 @@ const LocationSearch: React.FC<LocationSearchProps> = ({ onArrived }) => {
                   variant="h5"
                   sx={{ lineHeight: 1.6, letterSpacing: 2 }}
                 >
-                  text
+                  Spradzam lokalizacje...
                 </Typography>
               }
             </Grid>
