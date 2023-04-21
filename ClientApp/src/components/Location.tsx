@@ -37,7 +37,7 @@ const LocationCard: React.FC = () => {
 
   return (
     <>
-      <Grid container spacing={1} height="100vh" justifyContent="space-between">
+      <Grid container spacing={1} height="100%" justifyContent="space-between">
         {data === null
           ? "fetchin data..."
           : {
