@@ -5,6 +5,7 @@ import Hint from "./Hint";
 import DirectionHint from "./DirectionText";
 import LocationSearch from "./LocationSearch";
 import Congrats from "./Congrats";
+import Task from "./Task";
 
 export type GpsPosition = {
   latitude: number;
@@ -43,7 +44,7 @@ const LocationCard: React.FC = () => {
           {
             searching: <LocationSearch onArrived={() => setStage("found")} />,
             found: <Congrats onShowTask={() => setStage("task")} />,
-            task: "task",
+            task: <Task onTaskFinished={() => setStage("searching")} />,
           }[stage]
         }
       </Grid>
