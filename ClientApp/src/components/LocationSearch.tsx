@@ -27,6 +27,7 @@ const LocationSearch: React.FC<LocationSearchProps> = ({
   onArrived,
   taskData,
 }) => {
+  const [locationMessage, setLocationMessage] = React.useState("");
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     navigator.geolocation.getCurrentPosition(
@@ -41,6 +42,8 @@ const LocationSearch: React.FC<LocationSearchProps> = ({
           Math.abs(position.longitude - taskData.location.longitude) < 0.002
         ) {
           onArrived();
+        } else {
+          setLocationMessage("Niestety jeszcze nie to miejsce");
         }
       },
       (err) => {
@@ -51,6 +54,7 @@ const LocationSearch: React.FC<LocationSearchProps> = ({
     setOpen(true);
   };
   const handleClose = () => {
+    setLocationMessage("");
     setOpen(false);
   };
 
@@ -146,7 +150,9 @@ const LocationSearch: React.FC<LocationSearchProps> = ({
                   variant="h5"
                   sx={{ lineHeight: 1.6, letterSpacing: 2 }}
                 >
-                  Spradzam lokalizacje...
+                  {locationMessage === ""
+                    ? "Spradzam lokalizacje..."
+                    : locationMessage}
                 </Typography>
               }
             </Grid>
