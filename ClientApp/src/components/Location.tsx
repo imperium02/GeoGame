@@ -3,14 +3,19 @@ import { Grid, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import Hint from "./Hint";
 import DirectionHint from "./DirectionText";
+import LocationSearch from "./LocationSearch";
+import Congrats from "./Congrats";
 
 export type GpsPosition = {
   latitude: number;
   longitude: number;
 };
 
+type Stage = "searching" | "found" | "task";
+
 const LocationCard: React.FC = () => {
   const [position, setPosition] = React.useState<GpsPosition>();
+  const [stage, setStage] = React.useState<Stage>("searching");
 
   //   React.useEffect(() => {
   //     const interval = setInterval(() => {
@@ -34,61 +39,13 @@ const LocationCard: React.FC = () => {
   return (
     <>
       <Grid container spacing={1} height="100vh" justifyContent="space-between">
-        <Grid item>
-          <Typography
-            // variant="h4"
-            align="left"
-            sx={{ lineHeight: 1.6, letterSpacing: 2, fontSize: "28px" }}
-          >
-            Pierwsza lokalizacja to miejsce w którym pracuje. Jest to miejsce w
-            którym wykonuje ciężką pracę taką jak konfiguracja nowego kiosku.
-          </Typography>
-        </Grid>
-        <Grid item alignSelf="flex-start">
-          <Typography variant="h6" align="left" color="#C6B26F">
-            Dotknij aby sprawdzić czy jesteś na miejscu.
-          </Typography>
-        </Grid>
-        <Grid item>
-          <Typography
-            variant="h6"
-            align="left"
-            alignSelf="flex-start"
-            marginBottom={3}
-          >
-            Podpowiedzi:
-          </Typography>
-          <Grid container spacing={3} flexDirection="row">
-            <Grid item flexBasis={0} flexGrow={1} flexShrink={1}>
-              <Hint
-                hint="Ten budynek jest cały czarny oraz jest pokryty prawie w całości z okien."
-                name="Mała"
-                type="text"
-              />
-            </Grid>
-            <Grid item flexBasis={0} flexGrow={1} flexShrink={1}>
-              <Hint
-                hint="Ten budynek jest cały czarny oraz jest pokryty prawie w całości z okien."
-                name="Duża"
-                type="text"
-              />
-            </Grid>
-            <Grid item flexBasis={0} flexGrow={1} flexShrink={1}>
-              <Hint
-                hint="Ten budynek jest cały czarny oraz jest pokryty prawie w całości z okien."
-                name="Kierunek"
-                type="direction"
-              />
-            </Grid>
-            <Grid item flexBasis={0} flexGrow={1} flexShrink={1}>
-              <Hint
-                hint="Ten budynek jest cały czarny oraz jest pokryty prawie w całości z okien."
-                name="Dystans"
-                type="distance"
-              />
-            </Grid>
-          </Grid>
-        </Grid>
+        {
+          {
+            searching: <LocationSearch onArrived={() => setStage("found")} />,
+            found: <Congrats onShowTask={() => setStage("task")} />,
+            task: "task",
+          }[stage]
+        }
       </Grid>
     </>
   );
