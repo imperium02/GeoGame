@@ -7,13 +7,8 @@ import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import "./App.css";
 import LocationCard from "./components/Location";
 
-type GpsPosition = {
-  latitude: number;
-  longitude: number;
-};
-
 const App: React.FC = () => {
-  const [code, setCode] = useState("");
+  const [code, setCode] = useState(localStorage.getItem("accessCode") ?? "");
   const [codeCorrect, setCodeCorrect] = useState(false);
   const [fetchInProgress, setFetchInProgress] = useState(false);
 
@@ -21,9 +16,16 @@ const App: React.FC = () => {
 
   React.useEffect(() => {
     if (!fetchInProgress) return;
+    let accessCode = code;
+    if (code.includes(",")) {
+      const values = code.split(",");
+      localStorage.setItem("taskNumber", values[1]);
+      localStorage.setItem("accessCode", values[0]);
+      accessCode = values[0];
+    }
     const fetchData = async () => {
       const response = await fetch(
-        `https://geogamemac.azurewebsites.net/accessCode?accessCode=${code}`
+        `https://geogamemac.azurewebsites.net/accessCode?accessCode=${accessCode}`
       );
       const jsonData = await response.json();
       setData(jsonData);
@@ -34,9 +36,10 @@ const App: React.FC = () => {
 
   React.useEffect(() => {
     if (data?.codeCorrect === true) setCodeCorrect(true);
-  });
+  }, [data]);
 
   const validateCode = () => {
+    localStorage.setItem("accessCode", code);
     setFetchInProgress(true);
   };
 
@@ -56,6 +59,7 @@ const App: React.FC = () => {
                 variant="filled"
                 label="Twój kod"
                 onChange={(event) => setCode(event.target.value)}
+                value={code}
               />
             </Grid>
             <Grid item>

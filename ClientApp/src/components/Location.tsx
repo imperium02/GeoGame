@@ -20,7 +20,11 @@ const LocationCard: React.FC = () => {
 
   React.useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`https://geogamemac.azurewebsites.net/data`);
+      const response = await fetch(
+        `https://geogamemac.azurewebsites.net/data?accessCode=${localStorage.getItem(
+          "accessCode"
+        )}`
+      );
       const jsonData = await response.json();
       setData(jsonData);
     };
