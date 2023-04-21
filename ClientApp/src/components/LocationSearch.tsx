@@ -38,10 +38,8 @@ const LocationSearch: React.FC<LocationSearchProps> = ({
         };
 
         if (
-          (Math.abs(position.latitude - taskData.location.latitude) < 0.002 &&
-            Math.abs(position.longitude - taskData.location.longitude) <
-              0.002) ||
-          true
+          Math.abs(position.latitude - taskData.location.latitude) < 0.002 &&
+          Math.abs(position.longitude - taskData.location.longitude) < 0.002
         ) {
           onArrived();
         } else {
