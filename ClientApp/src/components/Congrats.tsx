@@ -15,7 +15,7 @@ const Congrats: React.FC<CongratsProps> = ({ onShowTask }) => {
       <Grid item>
         <Typography variant="h6">
           Kliknij na poniższy przycisk aby wyświetlić zadanie:
-        </Typography>{" "}
+        </Typography>
       </Grid>
       <Grid item>
         <Button onClick={onShowTask} variant="contained">
