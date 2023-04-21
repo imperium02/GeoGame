@@ -1,6 +1,6 @@
 import React from "react";
 import { Typography } from "@mui/material";
-import { GpsPosition } from "./Location";
+import { GpsPosition } from "../types";
 import { getCompassDirection } from "geolib";
 
 type GpsDirections =
@@ -40,7 +40,11 @@ const directions: Record<GpsDirections, string> = {
   NNW: "północny zachód",
 };
 
-const DirectionText: React.FC = () => {
+interface DirectionTextProps {
+  location: GpsPosition;
+}
+
+const DirectionText: React.FC<DirectionTextProps> = ({ location }) => {
   const [position, setPosition] = React.useState<GpsPosition>();
   const [direction, setDirection] = React.useState<GpsDirections>();
 
@@ -67,7 +71,7 @@ const DirectionText: React.FC = () => {
     if (position === undefined) return;
     const direction = getCompassDirection(
       { latitude: position.latitude, longitude: position.longitude },
-      { latitude: "52.398955", longitude: "16.930814" }
+      { latitude: location.latitude, longitude: location.longitude }
     );
     setDirection(direction);
   });

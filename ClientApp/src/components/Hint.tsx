@@ -10,12 +10,7 @@ import {
 import Button from "@mui/material/Button";
 import CloseIcon from "@mui/icons-material/Close";
 import DirectionText from "./DirectionText";
-
-interface HintProps {
-  hint: string;
-  name: string;
-  type: "text" | "direction" | "distance";
-}
+import { GpsPosition } from "../types";
 
 const style = {
   position: "absolute",
@@ -29,7 +24,14 @@ const style = {
   borderRadius: 2,
 };
 
-const Hint: React.FC<HintProps> = ({ hint, name, type }) => {
+interface HintProps {
+  hint: string;
+  name: string;
+  type: "text" | "direction" | "distance";
+  location: GpsPosition;
+}
+
+const Hint: React.FC<HintProps> = ({ hint, name, type, location }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -75,7 +77,7 @@ const Hint: React.FC<HintProps> = ({ hint, name, type }) => {
                       {hint}
                     </Typography>
                   ),
-                  direction: <DirectionText />,
+                  direction: <DirectionText location={location} />,
                   distance: "not implemented",
                 }[type]
               }

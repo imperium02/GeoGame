@@ -4,11 +4,7 @@ import Button from "@mui/material/Button";
 import Hint from "./Hint";
 import DirectionHint from "./DirectionText";
 import CloseIcon from "@mui/icons-material/Close";
-
-export type GpsPosition = {
-  latitude: number;
-  longitude: number;
-};
+import { GpsPosition, TaskData } from "../types";
 
 const style = {
   position: "absolute",
@@ -24,11 +20,13 @@ const style = {
 
 interface LocationSearchProps {
   onArrived: () => void;
+  taskData: TaskData;
 }
 
-const LocationSearch: React.FC<LocationSearchProps> = ({ onArrived }) => {
-  //   const [position, setPosition] = React.useState<GpsPosition>();
-  const [inPlace, setInPlace] = React.useState(false);
+const LocationSearch: React.FC<LocationSearchProps> = ({
+  onArrived,
+  taskData,
+}) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     navigator.geolocation.getCurrentPosition(
@@ -39,21 +37,10 @@ const LocationSearch: React.FC<LocationSearchProps> = ({ onArrived }) => {
         };
 
         if (
-          Math.abs(position.latitude - 52.431939) < 0.0001 &&
-          Math.abs(position.longitude - 16.910857) < 0.0001
+          Math.abs(position.latitude - taskData.location.latitude) < 0.002 &&
+          Math.abs(position.longitude - taskData.location.longitude) < 0.002
         ) {
-          alert(
-            `Lat: ${Math.abs(position.latitude - 52.431939)}, Long: ${Math.abs(
-              position.longitude - 16.910857
-            )}`
-          );
           onArrived();
-        } else {
-          alert(
-            `Lat: ${Math.abs(position.latitude - 52.431939)}, Long: ${Math.abs(
-              position.longitude - 16.910857
-            )}`
-          );
         }
       },
       (err) => {
@@ -75,8 +62,7 @@ const LocationSearch: React.FC<LocationSearchProps> = ({ onArrived }) => {
           align="left"
           sx={{ lineHeight: 1.6, letterSpacing: 2, fontSize: "28px" }}
         >
-          Pierwsza lokalizacja to miejsce w którym pracuje. Jest to miejsce w
-          którym wykonuje ciężką pracę taką jak konfiguracja nowego kiosku.
+          {taskData.mainHint}
         </Typography>
       </Grid>
       <Grid item alignSelf="flex-start">
@@ -101,16 +87,18 @@ const LocationSearch: React.FC<LocationSearchProps> = ({ onArrived }) => {
         <Grid container spacing={3} flexDirection="row">
           <Grid item flexBasis={0} flexGrow={1} flexShrink={1}>
             <Hint
-              hint="Ten budynek jest cały czarny oraz jest pokryty prawie w całości z okien."
+              hint={taskData.smallHint}
               name="Mała"
               type="text"
+              location={taskData.location}
             />
           </Grid>
           <Grid item flexBasis={0} flexGrow={1} flexShrink={1}>
             <Hint
-              hint="Ten budynek jest cały czarny oraz jest pokryty prawie w całości z okien."
+              hint={taskData.bigHint}
               name="Duża"
               type="text"
+              location={taskData.location}
             />
           </Grid>
           <Grid item flexBasis={0} flexGrow={1} flexShrink={1}>
@@ -118,6 +106,7 @@ const LocationSearch: React.FC<LocationSearchProps> = ({ onArrived }) => {
               hint="Ten budynek jest cały czarny oraz jest pokryty prawie w całości z okien."
               name="Kierunek"
               type="direction"
+              location={taskData.location}
             />
           </Grid>
           <Grid item flexBasis={0} flexGrow={1} flexShrink={1}>
@@ -125,6 +114,7 @@ const LocationSearch: React.FC<LocationSearchProps> = ({ onArrived }) => {
               hint="Ten budynek jest cały czarny oraz jest pokryty prawie w całości z okien."
               name="Dystans"
               type="distance"
+              location={taskData.location}
             />
           </Grid>
         </Grid>

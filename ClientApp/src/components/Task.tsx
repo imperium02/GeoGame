@@ -4,9 +4,10 @@ import Button from "@mui/material/Button";
 
 interface CongratsProps {
   onTaskFinished: () => void;
+  taskText: string;
 }
 
-const Task: React.FC<CongratsProps> = ({ onTaskFinished }) => {
+const Task: React.FC<CongratsProps> = ({ onTaskFinished, taskText }) => {
   return (
     <>
       <Grid container justifyContent="center" alignContent="center" spacing={5}>
@@ -15,9 +16,7 @@ const Task: React.FC<CongratsProps> = ({ onTaskFinished }) => {
             align="left"
             sx={{ lineHeight: 1.6, letterSpacing: 2, fontSize: "28px" }}
           >
-            W tym miejscu pracowałem po raz pierwszy. Widziałem samochody
-            jeżdzące oraz rowery też jeżdzące. Może kiedyś też pojeżdże. Twoje
-            zadanie to obrócić się 3 razy w miejscu.
+            {taskText}
           </Typography>
         </Grid>
         <Grid item>
