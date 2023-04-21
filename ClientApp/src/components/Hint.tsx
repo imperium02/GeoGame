@@ -9,10 +9,12 @@ import {
 } from "@mui/material";
 import Button from "@mui/material/Button";
 import CloseIcon from "@mui/icons-material/Close";
+import DirectionText from "./DirectionText";
 
 interface HintProps {
   hint: string;
   name: string;
+  type: "text" | "direction" | "distance";
 }
 
 const style = {
@@ -27,7 +29,7 @@ const style = {
   borderRadius: 2,
 };
 
-const Hint: React.FC<HintProps> = ({ hint, name }) => {
+const Hint: React.FC<HintProps> = ({ hint, name, type }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -63,12 +65,20 @@ const Hint: React.FC<HintProps> = ({ hint, name }) => {
                 marginBottom: 8,
               }}
             >
-              <Typography
-                variant="h5"
-                sx={{ lineHeight: 1.6, letterSpacing: 2 }}
-              >
-                {hint}
-              </Typography>
+              {
+                {
+                  text: (
+                    <Typography
+                      variant="h5"
+                      sx={{ lineHeight: 1.6, letterSpacing: 2 }}
+                    >
+                      {hint}
+                    </Typography>
+                  ),
+                  direction: <DirectionText />,
+                  distance: "not implemented",
+                }[type]
+              }
             </Grid>
           </Grid>
         </Box>

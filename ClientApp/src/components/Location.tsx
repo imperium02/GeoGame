@@ -2,8 +2,9 @@ import React from "react";
 import { Grid, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import Hint from "./Hint";
+import DirectionHint from "./DirectionText";
 
-type GpsPosition = {
+export type GpsPosition = {
   latitude: number;
   longitude: number;
 };
@@ -62,24 +63,28 @@ const LocationCard: React.FC = () => {
               <Hint
                 hint="Ten budynek jest cały czarny oraz jest pokryty prawie w całości z okien."
                 name="Mała"
+                type="text"
               />
             </Grid>
             <Grid item flexBasis={0} flexGrow={1} flexShrink={1}>
               <Hint
                 hint="Ten budynek jest cały czarny oraz jest pokryty prawie w całości z okien."
                 name="Duża"
+                type="text"
               />
             </Grid>
             <Grid item flexBasis={0} flexGrow={1} flexShrink={1}>
               <Hint
                 hint="Ten budynek jest cały czarny oraz jest pokryty prawie w całości z okien."
                 name="Kierunek"
+                type="direction"
               />
             </Grid>
             <Grid item flexBasis={0} flexGrow={1} flexShrink={1}>
               <Hint
                 hint="Ten budynek jest cały czarny oraz jest pokryty prawie w całości z okien."
-                name="Odległość"
+                name="Dystans"
+                type="distance"
               />
             </Grid>
           </Grid>
