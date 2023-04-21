@@ -15,29 +15,29 @@ type GpsPosition = {
 const App: React.FC = () => {
   const [code, setCode] = useState("");
   const [codeCorrect, setCodeCorrect] = useState(false);
+  const [fetchInProgress, setFetchInProgress] = useState(false);
 
-  const [position, setPosition] = React.useState<GpsPosition>();
+  const [data, setData] = useState<null | { codeCorrect: boolean }>(null);
 
-  const updateGpsPosition = () => {
-    console.log("updating");
-    navigator.geolocation.getCurrentPosition(
-      (p) => {
-        console.log("updating2");
-        setPosition({
-          latitude: p.coords.latitude,
-          longitude: p.coords.longitude,
-        });
-      },
-      (err) => {
-        alert(err);
-      },
-      { enableHighAccuracy: true, timeout: 10000 }
-    );
-    console.log("updated");
-  };
+  React.useEffect(() => {
+    if (!fetchInProgress) return;
+    const fetchData = async () => {
+      const response = await fetch(
+        `https://geogamemac.azurewebsites.net/accessCode?accessCode=${code}`
+      );
+      const jsonData = await response.json();
+      setData(jsonData);
+    };
+    fetchData();
+    setFetchInProgress(false);
+  }, [fetchInProgress]);
+
+  React.useEffect(() => {
+    if (data?.codeCorrect === true) setCodeCorrect(true);
+  });
 
   const validateCode = () => {
-    if ("test-code") setCodeCorrect(true);
+    setFetchInProgress(true);
   };
 
   return (
