@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 import CloseIcon from "@mui/icons-material/Close";
 import DirectionText from "./DirectionText";
 import { GpsPosition } from "../types";
+import DistanceText from "./DistanceText";
 
 const style = {
   position: "absolute",
@@ -78,7 +79,7 @@ const Hint: React.FC<HintProps> = ({ hint, name, type, location }) => {
                     </Typography>
                   ),
                   direction: <DirectionText location={location} />,
-                  distance: "not implemented",
+                  distance: <DistanceText location={location} />,
                 }[type]
               }
             </Grid>

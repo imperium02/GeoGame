@@ -74,7 +74,7 @@ const DirectionText: React.FC<DirectionTextProps> = ({ location }) => {
       { latitude: location.latitude, longitude: location.longitude }
     );
     setDirection(direction);
-  });
+  }, [position]);
 
   return (
     <Typography variant="h5" sx={{ lineHeight: 1.6, letterSpacing: 2 }}>
