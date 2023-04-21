@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
+import ConfettiExplosion from "react-confetti-explosion";
 
 interface CongratsProps {
   onShowTask: () => void;
@@ -12,6 +13,7 @@ const Congrats: React.FC<CongratsProps> = ({ onShowTask }) => {
       <Grid item>
         <Typography variant="h4">Gratulacje! Miejsce znalezione!</Typography>{" "}
       </Grid>
+      <ConfettiExplosion />
       <Grid item>
         <Typography variant="h6">
           Kliknij na poniższy przycisk aby wyświetlić zadanie:
